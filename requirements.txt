@@ -108,7 +108,6 @@ pydantic_core==2.33.2
 pydeck==0.9.1
 Pygments==2.19.1
 pyparsing==3.2.3
-pypiwin32==223
 pyproject_hooks==1.2.0
 pytest==8.3.5
 python-dateutil==2.9.0.post0
