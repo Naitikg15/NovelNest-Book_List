@@ -4,7 +4,10 @@ import os
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
 
-# Sample book data (to be replaced with a database later)
+# Predefined valid genres for dropdown and filtering
+VALID_GENRES = {"Fiction", "Non-Fiction", "Sci-Fi", "Biography", "Adventure", "Self-Help"}
+
+# Sample book data (replace with DB later)
 books = [
     {
         "title": "Dune",
@@ -53,9 +56,13 @@ def upload():
         title = request.form['title']
         author = request.form['author']
         description = request.form['description']
-        genre = request.form['genre'].split(',')
+        selected_genres = request.form.getlist('genre')  # Handles multiple selected options
+
+        # Validate and normalize genres
+        genres = [g for g in selected_genres if g in VALID_GENRES]
+
         file = request.files['cover']
-        if file:
+        if file and genres:
             filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
             file.save(filepath)
             books.append({
@@ -63,10 +70,13 @@ def upload():
                 "author": author,
                 "cover": file.filename,
                 "description": description,
-                "genre": [g.strip() for g in genre],
+                "genre": genres,
                 "favorite": False
             })
             return redirect(url_for('index'))
+        else:
+            return "Invalid input. Please upload a cover and select valid genre(s).", 400
+
     return render_template("upload.html")
 
 @app.route("/toggle_favorite/<title>", methods=["POST"])
@@ -76,7 +86,6 @@ def toggle_favorite(title):
             book['favorite'] = not book.get('favorite', False)
             break
     return redirect(url_for('index'))
-
 
 if __name__ == "__main__":
     if not os.path.exists(app.config['UPLOAD_FOLDER']):

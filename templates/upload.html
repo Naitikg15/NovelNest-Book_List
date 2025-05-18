@@ -25,6 +25,17 @@
             <label>Cover Image:</label>
             <input type="file" name="cover" accept="image/*" required>
 
+        <label for="genre">Genre(s):</label>
+        <select name="genre" id="genre" multiple required>
+            <option value="Fiction">Fiction</option>
+            <option value="Non-Fiction">Non-Fiction</option>
+            <option value="Sci-Fi">Sci-Fi</option>
+            <option value="Biography">Biography</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Self-Help">Self-Help</option>
+        </select>
+        <small>Hold Ctrl (Windows) or Command (Mac) to select multiple genres.</small>
+
             <button type="submit">Upload Book</button>
         </form>
     </main>
