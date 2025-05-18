@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <title>Upload a Book</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- jQuery (required by Select2) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
 </head>
+
+<script>
+    $(document).ready(function() {
+        $('#genre').select2({
+            placeholder: "Select genre(s)"
+        });
+    });
+</script>
+
 <body>
     <header>
         <h1>Upload New Book</h1>
@@ -26,7 +44,7 @@
             <input type="file" name="cover" accept="image/*" required>
 
         <label for="genre">Genre(s):</label>
-        <select name="genre" id="genre" multiple required>
+        <select name="genre" id="genre" multiple="multiple" required style="width: 100%;">
             <option value="Fiction">Fiction</option>
             <option value="Non-Fiction">Non-Fiction</option>
             <option value="Sci-Fi">Sci-Fi</option>
@@ -34,6 +52,7 @@
             <option value="Adventure">Adventure</option>
             <option value="Self-Help">Self-Help</option>
         </select>
+
         <small>Hold Ctrl (Windows) or Command (Mac) to select multiple genres.</small>
 
             <button type="submit">Upload Book</button>
