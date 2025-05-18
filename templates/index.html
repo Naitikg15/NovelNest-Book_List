@@ -7,38 +7,30 @@
 </head>
 <body>
     <header>
-        <h1>Book Recommendations</h1>
+        <h1>BookWorm Hub</h1>
         <nav>
             <button class="filter active">All</button>
             <button class="filter">Fiction</button>
-            <button class="filter">Science Fiction</button>
+            <button class="filter">Sci-Fi</button>
             <button class="filter">Non-Fiction</button>
-            <button class="filter">Fantasy</button>
         </nav>
+        <div class="upload-link">
+            <a href="{{ url_for('upload') }}">📚 Upload a New Book</a>
+        </div>
     </header>
 
-    <main>
-        <section class="featured">
-            <img src="{{ url_for('static', filename='uploads/gatsby.jpg') }}" alt="The Great Gatsby">
-            <div class="details">
-                <h2>The Great Gatsby</h2>
-                <h4>F. Scott Fitzgerald</h4>
-                <p>Lorem ipsum dolor sit amet, <strong>consectetur</strong> adipiscing elit. Luram ipsum aurussamus.</p>
-            </div>
-            <div class="fav">&#10084;</div>
-        </section>
 
+    <main>
         <section class="book-grid">
             {% for book in books %}
             <div class="book-card">
                 <img src="{{ url_for('static', filename='uploads/' + book.cover) }}" alt="{{ book.title }}">
                 <h3>{{ book.title }}</h3>
                 <p class="author">{{ book.author }}</p>
-                <p class="stars">⭐⭐⭐⭐⭐</p>
                 <p class="desc">{{ book.description }}</p>
                 <div class="actions">
-                    <button>Write a Recommendation</button>
                     <button>Add to Favorites</button>
+                    <button>Write a Review</button>
                 </div>
             </div>
             {% endfor %}

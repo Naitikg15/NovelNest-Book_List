@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload a Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Upload New Book</h1>
+        <a href="{{ url_for('index') }}">← Back to Home</a>
+    </header>
+
+    <main>
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data" class="upload-form">
+            <label>Book Title:</label>
+            <input type="text" name="title" required>
+
+            <label>Author:</label>
+            <input type="text" name="author" required>
+
+            <label>Description:</label>
+            <textarea name="description" rows="4" required></textarea>
+
+            <label>Cover Image:</label>
+            <input type="file" name="cover" accept="image/*" required>
+
+            <button type="submit">Upload Book</button>
+        </form>
+    </main>
+</body>
+</html>
