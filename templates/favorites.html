@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorites - BookWorm Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+<header>
+    <h1>❤️ Your Favorite Books</h1>
+    <a href="{{ url_for('index') }}">← Back to All Books</a>
+</header>
+
+<main>
+    <section class="book-grid">
+        {% if books %}
+            {% for book in books %}
+            <div class="book-card">
+                <img src="{{ url_for('static', filename='uploads/' + book.cover) }}" alt="{{ book.title }}">
+                <h3>{{ book.title }}</h3>
+                <p class="author">{{ book.author }}</p>
+                <p class="desc">{{ book.description }}</p>
+                <form action="{{ url_for('toggle_favorite', title=book.title) }}" method="post">
+                    <button type="submit">💔 Remove from Favorites</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No favorite books yet. Go add some!</p>
+        {% endif %}
+    </section>
+</main>
+</body>
+</html>

@@ -69,13 +69,14 @@ def upload():
             return redirect(url_for('index'))
     return render_template("upload.html")
 
-@app.route("/toggle_favorite/<title>")
+@app.route("/toggle_favorite/<title>", methods=["POST"])
 def toggle_favorite(title):
     for book in books:
         if book['title'] == title:
             book['favorite'] = not book.get('favorite', False)
             break
     return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     if not os.path.exists(app.config['UPLOAD_FOLDER']):

@@ -6,35 +6,38 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <header>
-        <h1>BookWorm Hub</h1>
-        <nav>
-            <button class="filter active">All</button>
-            <button class="filter">Fiction</button>
-            <button class="filter">Sci-Fi</button>
-            <button class="filter">Non-Fiction</button>
-        </nav>
-        <div class="upload-link">
-            <a href="{{ url_for('upload') }}">📚 Upload a New Book</a>
-        </div>
-    </header>
+<header>
+    <h1>BookWorm Hub</h1>
+    <nav>
+        <a href="{{ url_for('index') }}"><button class="filter {{ 'active' if not genre_filter }}">All</button></a>
+        <a href="{{ url_for('index', genre='Fiction') }}"><button class="filter {{ 'active' if genre_filter == 'Fiction' }}">Fiction</button></a>
+        <a href="{{ url_for('index', genre='Sci-Fi') }}"><button class="filter {{ 'active' if genre_filter == 'Sci-Fi' }}">Sci-Fi</button></a>
+        <a href="{{ url_for('index', genre='Non-Fiction') }}"><button class="filter {{ 'active' if genre_filter == 'Non-Fiction' }}">Non-Fiction</button></a>
+    </nav>
+    <div class="upload-link">
+        <a href="{{ url_for('upload') }}">📚 Upload a New Book</a> |
+        <a href="{{ url_for('favorites') }}">❤️ View Favorites</a>
+    </div>
+</header>
 
-
-    <main>
-        <section class="book-grid">
-            {% for book in books %}
-            <div class="book-card">
-                <img src="{{ url_for('static', filename='uploads/' + book.cover) }}" alt="{{ book.title }}">
-                <h3>{{ book.title }}</h3>
-                <p class="author">{{ book.author }}</p>
-                <p class="desc">{{ book.description }}</p>
-                <div class="actions">
-                    <button>Add to Favorites</button>
-                    <button>Write a Review</button>
-                </div>
+<main>
+    <section class="book-grid">
+        {% for book in books %}
+        <div class="book-card">
+            <img src="{{ url_for('static', filename='uploads/' + book.cover) }}" alt="{{ book.title }}">
+            <h3>{{ book.title }}</h3>
+            <p class="author">{{ book.author }}</p>
+            <p class="desc">{{ book.description }}</p>
+            <div class="actions">
+                <form action="{{ url_for('toggle_favorite', title=book.title) }}" method="post">
+                    <button type="submit">
+                        {{ "❤️ Remove from Favorites" if book.favorite else "🤍 Add to Favorites" }}
+                    </button>
+                </form>
             </div>
-            {% endfor %}
-        </section>
-    </main>
+        </div>
+        {% endfor %}
+    </section>
+</main>
 </body>
 </html>
