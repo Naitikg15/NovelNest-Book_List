@@ -1,0 +1,20 @@
+[project]
+name = "novelnest"
+version = "1.0.0"
+description = "A web application created for Bookworms"
+authors = [
+    {name = "Naitik Gupta", email = "naitik1505@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "flask (>=3.1.0)",
+    "pandas (>=2.2.3)",
+    "virtualenv (>=20.31.2)"
+    "SQLAlchemy (>=2.0.41)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
