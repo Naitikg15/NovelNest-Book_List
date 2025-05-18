@@ -9,11 +9,19 @@
 <header>
     <h1>BookWorm Hub</h1>
     <nav>
-        <a href="{{ url_for('index') }}"><button class="filter {{ 'active' if not genre_filter }}">All</button></a>
-        <a href="{{ url_for('index', genre='Fiction') }}"><button class="filter {{ 'active' if genre_filter == 'Fiction' }}">Fiction</button></a>
-        <a href="{{ url_for('index', genre='Sci-Fi') }}"><button class="filter {{ 'active' if genre_filter == 'Sci-Fi' }}">Sci-Fi</button></a>
-        <a href="{{ url_for('index', genre='Non-Fiction') }}"><button class="filter {{ 'active' if genre_filter == 'Non-Fiction' }}">Non-Fiction</button></a>
+        <a href="{{ url_for('index') }}" class="filter {% if not genre_filter %}active{% endif %}">All</a>
+        {% set genres = [
+            'Fiction', 'Non-Fiction', 'Sci-Fi', 'Biography', 'Adventure', 'Self-Help',
+            'Fantasy', 'Mystery', 'Thriller', 'Romance', 'Historical', 'Horror',
+            'Poetry', 'Science', 'Philosophy', 'Classic', 'Children', 'Young Adult', 'Graphic Novel'
+        ] %}
+        {% for genre in genres %}
+            <a href="{{ url_for('index', genre=genre) }}" class="filter {% if genre_filter == genre %}active{% endif %}">
+                {{ genre }}
+            </a>
+        {% endfor %}
     </nav>
+
     <div class="upload-link">
         <a href="{{ url_for('upload') }}">📚 Upload a New Book</a> |
         <a href="{{ url_for('favorites') }}">❤️ View Favorites</a>

@@ -122,3 +122,34 @@ main {
 .upload-link a:hover {
     background-color: #138496;
 }
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+}
+
+nav .filter {
+    padding: 0.5rem 1rem;
+    background-color: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav .filter:hover {
+    background-color: #dcdcdc;
+    color: #000;
+}
+
+nav .filter.active {
+    background-color: #4a90e2;
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
