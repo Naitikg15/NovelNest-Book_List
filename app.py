@@ -64,8 +64,8 @@ def upload():
 
     return render_template("upload.html")
 
-@app.route("/toggle_favorite/<title>", methods=["POST"])
-def toggle_favorite(title):
+@app.route("/toggle_favorite/<int:book_id>", methods=["POST"])
+def toggle_favorite(book_id):
     book = Book.query.get_or_404(book_id)
     book.favorite = not book.favorite
     db.session.commit()

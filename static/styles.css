@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: #f4f4f4;
+    background: #1b2235;
     margin: 0;
     padding: 0;
     color: #333;
@@ -11,6 +11,13 @@ header {
     color: white;
     padding: 20px;
     text-align: center;
+    background-image: url('https://i.pinimg.com/1200x/65/79/4d/65794da1ce3e5e3537a281ad6eaba286.jpg' ); /* adjust path as needed */
+    background-repeat: no-repeat;        /* Don't repeat the image */
+    background-size: cover;            /* Scale image to fit inside the nav */
+    background-position: bottom;  /* Center the image */
+    background-color: #f5f5f5;           /* Optional: fallback background color */
+    /* height: 150px;
+    width: 100%; */
 }
 
 nav {
@@ -153,3 +160,9 @@ nav .filter.active {
     font-weight: 600;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
+
+#title{
+    font-family: 'Times New Roman', Times, serif;
+    font-size:  85px;
+}
+

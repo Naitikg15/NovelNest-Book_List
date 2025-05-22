@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-<header>
-    <h1>BookWorm Hub</h1>
+<header id="Main_Page">
+    <h1 id="title">BookWorm Hub</h1>
+    <img src="" alt="">
     <nav>
         <a href="{{ url_for('index') }}" class="filter {% if not genre_filter %}active{% endif %}">All</a>
         {% set genres = [
@@ -37,11 +38,12 @@
             <p class="author">{{ book.author }}</p>
             <p class="desc">{{ book.description }}</p>
             <div class="actions">
-                <form action="{{ url_for('toggle_favorite', title=book.title) }}" method="post">
+                <form action="{{ url_for('toggle_favorite', book_id=book.id) }}" method="post">
                     <button type="submit">
-                        {{ "❤️ Remove from Favorites" if book.favorite else "🤍 Add to Favorites" }}
+                        {% if book.favorite %}❤️ Remove Favorite{% else %}🤍 Add to Favorites{% endif %}
                     </button>
                 </form>
+
             </div>
         </div>
         {% endfor %}
